@@ -5,10 +5,13 @@ var io = require('socket.io')(http);
 
 // socket.io
 io.on('connection', function(socket){
-  socket.emit('message', { message:'hey there' });
+  socket.emit('server message', {
+    ch:'',
+    sender:'Server',
+    text:'Connection secured - use /nick to declare username' });
 
   socket.on('client message', function(msg) {
-    socket.emit('message', { message:'how are you?' });
+    io.emit('server message', msg);
   })
 });
 

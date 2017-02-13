@@ -42,9 +42,9 @@
             </ul>
           </div>
 
-          <div class="panel-footer chat-input">
-            <input v-model="message">
-            <input type="button" v-on:click="sendMessage">
+          <div class="panel-footer chat-input row">
+            <textarea class="chat-input-bar col-xs-11" rows="8" cols="80" v-model="message"></textarea>
+            <input class="chat-input-buttom btn btn-default col-xs-1" type="button" value="Send" v-on:click="sendMessage">
           </div>
         </div><!-- chat-->
 
