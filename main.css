@@ -1,5 +1,10 @@
-html, body, .full-height, #app, #chat {
+html, body, #app, #chat {
   height: 100%;
+}
+
+.full-height {
+  height: 100%;
+  margin-bottom: 0px;
 }
 
 .chat-input {
@@ -23,4 +28,10 @@ html, body, .full-height, #app, #chat {
   padding: 0;
   height: 50px;
   resize: none;
+}
+
+
+.scrollable {
+  height: calc(100% - 90px);
+  overflow-y: scroll;
 }
