@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+// socket.io
 io.on('connection', function(socket){
   socket.emit('message', { message:'hey there' });
 
@@ -11,6 +12,7 @@ io.on('connection', function(socket){
   })
 });
 
+// express
 app.use(express.static(__dirname));
 app.get('/', function(req, res){
   res.sendFile('index.html');

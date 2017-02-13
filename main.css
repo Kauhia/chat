@@ -1,3 +1,9 @@
 html, body, .full-height, #app, #chat {
   height: 100%;
 }
+
+.chat-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
