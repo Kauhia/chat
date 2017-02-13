@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <!-- Latest compiled and minified JavaScript
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    -->
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+
+      <div class="" id="channelsBox">
+        <ul class="list-group">
+          <li class="list-group-item" v-for="channel in channels">{{channel}}</li>
+        </ul>
+      </div><!-- channels -->
+
+
+      <div class="panel panel-default" id="chat">
+        <div class="panel-header">
+          <p>{{selectedCh}}</p>
+        </div>
+
+        <div class="panel-body" id="messagesBox">
+          <ul>
+            <message-item v-for="message in messages" v-bind:message="message">
+            </message-item>
+          </ul>
+        </div>
+
+        <div class="panel-footer" id="sendBox">
+          <input id="messageInput" v-model="message">
+          <input type="button" v-on:click="sendMessage">
+        </div>
+      </div><!-- chat-->
+    </div><!-- app -->
+
+    <script src="main.js"></script>
+  </body>
+</html>
