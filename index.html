@@ -13,32 +13,42 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
   </head>
   <body>
-    <div id="app">
+    <div class="container-fluid" id="app">
+      <div class="row full-height">
 
-      <div class="" id="channelsBox">
-        <ul class="list-group">
-          <li class="list-group-item" v-for="channel in channels">{{channel}}</li>
-        </ul>
-      </div><!-- channels -->
+        <!-- available channels -->
+        <div class="col-xs-4 panel panel-default full-height">
+          <div class="panel-header">
+            <p>Possible channels</p>
+          </div>
 
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item" v-for="channel in channels">{{channel}}</li>
+            </ul>
+          </div>
+        </div><!-- available channels -->
 
-      <div class="panel panel-default" id="chat">
-        <div class="panel-header">
-          <p>{{selectedCh}}</p>
-        </div>
+        <!-- chat -->
+        <div class="col-xs-8 panel panel-default full-height">
+          <div class="panel-header">
+            <p>Selected channel: {{selectedCh}}</p>
+          </div>
 
-        <div class="panel-body" id="messagesBox">
-          <ul>
-            <message-item v-for="message in messages" v-bind:message="message">
-            </message-item>
-          </ul>
-        </div>
+          <div class="panel-body">
+            <ul>
+              <message-item v-for="message in messages" v-bind:message="message">
+              </message-item>
+            </ul>
+          </div>
 
-        <div class="panel-footer" id="sendBox">
-          <input id="messageInput" v-model="message">
-          <input type="button" v-on:click="sendMessage">
-        </div>
-      </div><!-- chat-->
+          <!--<div class="panel-footer" id="sendBox">
+            <input id="messageInput" v-model="message">
+            <input type="button" v-on:click="sendMessage">
+          </div>-->
+
+        </div><!-- chat-->
+      </div><!-- row -->
     </div><!-- app -->
 
     <script src="main.js"></script>
