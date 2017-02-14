@@ -4,7 +4,6 @@ socket.on('server message', function(data) {
   app.messages.push({ch:data.ch, sender:data.sender, text:data.text});
 });
 
-
 Vue.component('message-item', {
   props: ['message'],
   template: '<p>{{message.sender}}: {{ message.text }}</p>'

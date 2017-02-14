@@ -15,8 +15,6 @@ io.on('connection', function(socket){
   //share the messages to everyone
   socket.on('client message', function(msg) {
     io.in(msg.ch).emit('server message', msg);
-    //socket.broadcast.to(msg.ch).emit('server message', msg);
-    //io.emit('server message', msg);
   });
 
   //join the user to a channels
