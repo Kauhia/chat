@@ -13,7 +13,7 @@ Vue.component('message-item', {
 var app = new Vue({
   el:'#app',
   data: {
-    nickname:'Ek',
+    nickname:'',
 
     channels:['Cards', 'Macs', 'Kittens', 'Booze'],
     selectedCh:'Cards',
@@ -24,12 +24,14 @@ var app = new Vue({
   },
   methods:{
     sendMessage: function() {
-      socket.emit('client message', {
-        sender:this.nickname,
-        text:this.message,
-        ch:this.selectedCh
-      });
-      this.message = '';
+      if(this.nickname !== '' && this.message !== '' && this.joinedChs.indexOf(this.selectedCh) !== -1) {
+        socket.emit('client message', {
+          sender:this.nickname,
+          text:this.message,
+          ch:this.selectedCh
+        });
+        this.message = '';
+      }
     },
     selectCh: function(ch) {
       this.selectedCh = ch;
@@ -42,9 +44,10 @@ var app = new Vue({
     joinRoom: function() {
       this.joinedChs.push(this.selectedCh);
       socket.emit('join', { ch:this.selectedCh });
-    }
+    },
+
   },
   mounted: function() {
-    this.joinRoom();
+    this.joinRoom(); //join the default room atomaticly
   }
 });

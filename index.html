@@ -18,8 +18,12 @@
 
         <!-- sidebar -->
         <div class="col-xs-4 panel panel-default full-height">
-
           <div class="panel-body">
+            <h2>Nickname</h2>
+            <div class="form-group">
+              <input type="text" class="form-control" v-model="nickname" placeholder="Select a nickname">
+            </div><!-- input-group -->
+
             <h2>Channels</h2>
             <p v-for="channel in channels" v-on:click="selectCh(channel)">{{channel}}</p>
           </div>
@@ -28,12 +32,15 @@
         <!-- chat -->
         <div class="col-xs-8 panel panel-default full-height">
           <div class="panel-header">
-            <p>Selected channel: {{selectedCh}}</p>
+            <h1>{{selectedCh}}-channel</h1>
           </div>
 
           <div class="panel-body scrollable">
-            <div v-if="joinedChs.indexOf(selectedCh) === -1">
-              <p v-on:click="joinRoom()">
+            <div v-if="nickname === ''">
+              <h2 class="text-center">Select nickname first</h2>
+            </div>
+            <div v-else-if="joinedChs.indexOf(selectedCh) === -1">
+              <p class="text-center" v-on:click="joinRoom()">
                 You are not currently joined to this channel. Click this text to join the channel and recive messages.
               </p>
             </div>
@@ -41,12 +48,19 @@
               <message-item v-for="message in messagesByCh()" v-bind:message="message">
               </message-item>
             </ul>
-            <p v-else>There is no messages on this channel yet. Send one!</p>
+            <p class="text-center" v-else>There is no messages on this channel yet. Send one!</p>
           </div>
 
           <div class="panel-footer chat-input row">
-            <textarea class="chat-input-bar col-xs-11" rows="8" cols="80" v-model="message"></textarea>
-            <input class="chat-input-buttom btn btn-default col-xs-1" type="button" value="Send" v-on:click="sendMessage">
+            <div class="input-group input-group-lg">
+              <textarea class="form-control chat-input-bar" rows="8" cols="80" placeholder="Send message" v-model="message"></textarea>
+              <span class="input-group-btn">
+                <button class="btn btn-primary" v-on:click="sendMessage" type="button">
+                  Send
+                </button>
+              </span>
+            </div><!-- input-group -->
+
           </div>
         </div><!-- chat-->
 

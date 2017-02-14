@@ -18,21 +18,15 @@ html, body, #app {
   border: 0;
 }
 
-.chat-input-buttom {
-  height: 50px;
-  background-color: lawngreen;
-
-}
-
 .chat-input-bar {
-  margin: 0;
-  padding: 0;
-  height: 50px;
   resize: none;
 }
-
 
 .scrollable {
   height: calc(100% - 90px);
   overflow-y: scroll;
+}
+
+.text-center {
+  text-align: center;
 }
