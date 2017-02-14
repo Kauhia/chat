@@ -1,5 +1,6 @@
-html, body, #app, #chat {
+html, body, #app {
   height: 100%;
+  overflow:hidden;
 }
 
 .full-height {

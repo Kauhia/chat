@@ -3,6 +3,8 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+var availableChs = ['Cards', 'Macs', 'Kittens', 'Booze'];
+
 // socket.io
 io.on('connection', function(socket){
   socket.emit('server message', {
@@ -10,8 +12,18 @@ io.on('connection', function(socket){
     sender:'Server',
     text:'Connection secured - use /nick to declare username' });
 
+  //share the messages to everyone
   socket.on('client message', function(msg) {
-    io.emit('server message', msg);
+    io.in(msg.ch).emit('server message', msg);
+    //socket.broadcast.to(msg.ch).emit('server message', msg);
+    //io.emit('server message', msg);
+  });
+
+  //join the user to a channels
+  socket.on('join', function(msg) {
+    availableChs.indexOf(msg.ch) !== -1 ?
+      socket.join(msg.ch) :
+      console.log("channel not available: " + msg.ch);
   })
 });
 

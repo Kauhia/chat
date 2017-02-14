@@ -16,18 +16,14 @@
     <div class="container-fluid" id="app">
       <div class="row full-height">
 
-        <!-- available channels -->
+        <!-- sidebar -->
         <div class="col-xs-4 panel panel-default full-height">
-          <div class="panel-header">
-            <p>Possible channels</p>
-          </div>
 
           <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item" v-for="channel in channels">{{channel}}</li>
-            </ul>
+            <h2>Channels</h2>
+            <p v-for="channel in channels" v-on:click="selectCh(channel)">{{channel}}</p>
           </div>
-        </div><!-- available channels -->
+        </div><!-- sidebar -->
 
         <!-- chat -->
         <div class="col-xs-8 panel panel-default full-height">
@@ -36,10 +32,16 @@
           </div>
 
           <div class="panel-body scrollable">
-            <ul>
-              <message-item v-for="message in messages" v-bind:message="message">
+            <div v-if="joinedChs.indexOf(selectedCh) === -1">
+              <p v-on:click="joinRoom()">
+                You are not currently joined to this channel. Click this text to join the channel and recive messages.
+              </p>
+            </div>
+            <ul v-else-if="messagesByCh().length > 0">
+              <message-item v-for="message in messagesByCh()" v-bind:message="message">
               </message-item>
             </ul>
+            <p v-else>There is no messages on this channel yet. Send one!</p>
           </div>
 
           <div class="panel-footer chat-input row">
